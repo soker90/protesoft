@@ -1,11 +1,23 @@
 package presentacion;
 
 import dominio.GestorPerros;
+import dominio.Imagen;
 import dominio.Perro;
 import java.awt.CardLayout;
+import java.awt.Graphics;
 import java.io.File;
 import java.nio.file.Files;
 import javax.swing.JFileChooser;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.channels.FileChannel;
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
+import javax.swing.filechooser.FileSystemView;
 
 public class PanelPerroEditar extends javax.swing.JPanel {
 
@@ -47,6 +59,7 @@ public class PanelPerroEditar extends javax.swing.JPanel {
         txtEnfermedades.setText(p.getEnfermedades());
         txtDescripcion.setText(p.getDescripcion());
         txtVideo.setText(p.getVideo());
+       this.cargarImagenes();
         
     }
 
@@ -96,7 +109,8 @@ public class PanelPerroEditar extends javax.swing.JPanel {
         txtVideo = new javax.swing.JTextField();
         btnAceptar = new javax.swing.JButton();
         btnImagen = new javax.swing.JButton();
-        jScrollPane4 = new javax.swing.JScrollPane();
+        pnlImagenesP = new javax.swing.JScrollPane();
+        pnlImagenes = new javax.swing.JPanel();
 
         setLayout(new java.awt.CardLayout());
 
@@ -236,6 +250,22 @@ public class PanelPerroEditar extends javax.swing.JPanel {
             }
         });
 
+        pnlImagenesP.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
+        pnlImagenesP.setOpaque(false);
+
+        javax.swing.GroupLayout pnlImagenesLayout = new javax.swing.GroupLayout(pnlImagenes);
+        pnlImagenes.setLayout(pnlImagenesLayout);
+        pnlImagenesLayout.setHorizontalGroup(
+            pnlImagenesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 381, Short.MAX_VALUE)
+        );
+        pnlImagenesLayout.setVerticalGroup(
+            pnlImagenesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 144, Short.MAX_VALUE)
+        );
+
+        pnlImagenesP.setViewportView(pnlImagenes);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -317,7 +347,7 @@ public class PanelPerroEditar extends javax.swing.JPanel {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(btnImagen)
                                         .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(jScrollPane4))))
+                                    .addComponent(pnlImagenesP))))
                         .addGap(39, 39, 39))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(3, 3, 3)
@@ -398,7 +428,7 @@ public class PanelPerroEditar extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnImagen)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnlImagenesP, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(btnAceptar)
                 .addContainerGap(44, Short.MAX_VALUE))
@@ -489,18 +519,45 @@ public class PanelPerroEditar extends javax.swing.JPanel {
     private void btnImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImagenActionPerformed
 
         JFileChooser fc = new JFileChooser();
-        
+        File destino = new File("Perros"+File.separatorChar+this.id);
         int respuesta = fc.showOpenDialog(this);
         if (respuesta == JFileChooser.APPROVE_OPTION)
         {
-            File archivoElegido = fc.getSelectedFile();
-            File destino = new File("Perros"+File.separatorChar+this.id+File.pathSeparatorChar+archivoElegido.getName());
-            System.out.println(archivoElegido.getAbsoluteFile());
-            System.out.println(destino.getAbsoluteFile());
+            File nombre = new File("Perros"+File.separatorChar+this.id+
+                    File.separatorChar+fc.getSelectedFile().getName());
+            File origen=fc.getSelectedFile();
+            
+            try{
+              FileChannel in = (new FileInputStream(origen)).getChannel();
+              FileChannel out = (new FileOutputStream(nombre)).getChannel();
+              in.transferTo(0, origen.length(), out);
+              in.close();
+              out.close();
+            }
+            catch(Exception e)
+            {
+                System.out.println(e);
+            }
         }
+        cargarImagenes();
     }//GEN-LAST:event_btnImagenActionPerformed
 
-
+    private void cargarImagenes()
+    {
+        String sDirectorio = "Perros"+File.separatorChar+this.id;
+        File f = new File(sDirectorio);
+        int espacio = 150;
+        if (f.exists()){
+            File[] ficheros = f.listFiles();
+            for (int x=0;x<ficheros.length;x++){
+                pnlImagenes.add(new Imagen(espacio,150,ficheros[x].getAbsolutePath()));
+                espacio += 150;
+            }
+            pnlImagenes.repaint();
+        }
+        
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnImagen;
@@ -523,7 +580,8 @@ public class PanelPerroEditar extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JPanel pnlImagenes;
+    private javax.swing.JScrollPane pnlImagenesP;
     private javax.swing.JRadioButton rbCachorroN;
     private javax.swing.JRadioButton rbCachorroS;
     private javax.swing.JRadioButton rbChipN;
