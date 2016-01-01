@@ -3,8 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/home/edu/software/protesoft/src/presentacion/PanelVoluntariosEditar.java</file>
             <file>file:/home/edu/software/protesoft/src/dominio/GestorVoluntarios.java</file>
-            <file>file:/home/edu/software/protesoft/src/dominio/Voluntario.java</file>
+            <file>file:/home/edu/software/protesoft/src/presentacion/FormInicio.java</file>
+            <file>file:/home/edu/software/protesoft/src/presentacion/PanelVoluntariosLista.java</file>
         </group>
     </open-files>
 </project-private>

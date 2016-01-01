@@ -14,6 +14,8 @@ import java.nio.channels.FileChannel;
 public class PanelVoluntariosEditar extends javax.swing.JPanel {
 
     private int id;
+    private Imagen img;
+    private int cont;
     public PanelVoluntariosEditar(int id) {
         initComponents();
         this.id = id;
@@ -33,6 +35,7 @@ public class PanelVoluntariosEditar extends javax.swing.JPanel {
             rbConocimientosN.setSelected(true);
         txtZona.setText(v.getDisponibilidad());
         txtHorario.setText(v.getHorario());
+        cont = 0;
        this.cargarImagen();
         
     }
@@ -307,7 +310,6 @@ public class PanelVoluntariosEditar extends javax.swing.JPanel {
     }//GEN-LAST:event_rbConocimientosNActionPerformed
 
     private void btnImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImagenActionPerformed
-
         JFileChooser fc = new JFileChooser();
         File destino = new File("Voluntarios"+File.separatorChar+this.id+".jpg");
         int respuesta = fc.showOpenDialog(this);
@@ -317,7 +319,7 @@ public class PanelVoluntariosEditar extends javax.swing.JPanel {
             
             try{
               FileChannel in = (new FileInputStream(origen)).getChannel();
-              FileChannel out = (new FileOutputStream(this.id+".jpg")).getChannel();
+              FileChannel out = (new FileOutputStream(destino)).getChannel();
               in.transferTo(0, origen.length(), out);
               in.close();
               out.close();
@@ -334,8 +336,21 @@ public class PanelVoluntariosEditar extends javax.swing.JPanel {
     {
         String sDirectorio = "Voluntarios"+File.separatorChar+this.id+".jpg";
         File f = new File(sDirectorio);
-        pnlImagen.add(new Imagen(150,150,f.getAbsolutePath()));
-        pnlImagen.repaint();
+        File mk = new File("Voluntarios");
+        
+        if(mk.exists())
+        {
+            if(f.exists()){
+                if(cont > 0)
+                    pnlImagen.remove(img);
+                cont++;
+                this.img = new Imagen(150,150,f.getAbsolutePath());
+                pnlImagen.add(this.img);
+                pnlImagen.repaint();
+            }
+        }
+        else
+            mk.mkdir();
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
