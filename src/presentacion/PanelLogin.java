@@ -1,15 +1,21 @@
 
 package presentacion;
 
+import dominio.GestorUsuarios;
 import java.awt.CardLayout;
+import java.util.Properties;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import static presentacion.FormInicio.propiedades;
 
 public class PanelLogin extends javax.swing.JPanel {
 
     JPanel pnlBotones;
-    public PanelLogin(JPanel pnlBotones) {
+    FormInicio formulario;
+    public PanelLogin(JPanel pnlBotones, FormInicio principal) {
         initComponents();
         this.pnlBotones = pnlBotones;
+        this.formulario = principal;
     }
 
     @SuppressWarnings("unchecked")
@@ -17,55 +23,65 @@ public class PanelLogin extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        btnIngles = new javax.swing.JButton();
+        btnEspanol = new javax.swing.JButton();
+        pnlLogin = new javax.swing.JPanel();
+        lblUsuario = new javax.swing.JLabel();
+        txtUsuario = new javax.swing.JTextField();
+        lblClave = new javax.swing.JLabel();
+        txtClave = new javax.swing.JPasswordField();
         btnAceptar = new javax.swing.JButton();
 
         setLayout(new java.awt.CardLayout());
 
-        jButton1.setText("jButton1");
+        btnIngles.setText("English");
+        btnIngles.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInglesActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("jButton2");
+        btnEspanol.setText("Español");
+        btnEspanol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEspanolActionPerformed(evt);
+            }
+        });
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Iniciar sesión"));
+        pnlLogin.setBorder(javax.swing.BorderFactory.createTitledBorder("Login"));
 
-        jLabel1.setText("jLabel1");
+        lblUsuario.setText("Usuario");
 
-        jTextField1.setText("jTextField1");
+        txtUsuario.setText("admin");
 
-        jLabel2.setText("jLabel2");
+        lblClave.setText("Clave");
 
-        jPasswordField1.setText("jPasswordField1");
+        txtClave.setText("admin");
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnlLoginLayout = new javax.swing.GroupLayout(pnlLogin);
+        pnlLogin.setLayout(pnlLoginLayout);
+        pnlLoginLayout.setHorizontalGroup(
+            pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlLoginLayout.createSequentialGroup()
                 .addGap(67, 67, 67)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField1)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE))
+                .addGroup(pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblClave)
+                    .addComponent(lblUsuario)
+                    .addComponent(txtUsuario)
+                    .addComponent(txtClave, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE))
                 .addGap(69, 69, 69))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        pnlLoginLayout.setVerticalGroup(
+            pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlLoginLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(lblUsuario)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel2)
+                .addComponent(lblClave)
                 .addGap(18, 18, 18)
-                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(52, Short.MAX_VALUE))
         );
 
@@ -83,15 +99,15 @@ public class PanelLogin extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton2)
+                                .addComponent(btnEspanol, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton1))
-                            .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(btnIngles, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(25, 25, 25))
         );
         jPanel1Layout.setVerticalGroup(
@@ -99,10 +115,10 @@ public class PanelLogin extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(btnIngles)
+                    .addComponent(btnEspanol))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnlLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnAceptar)
                 .addGap(41, 41, 41))
@@ -112,24 +128,49 @@ public class PanelLogin extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        PanelPerrosLista pnlPerros = new PanelPerrosLista();
-        FormInicio.pnlPrincipal.add(pnlPerros,"menu2");
-        FormInicio.pnlActual = pnlPerros;
-        pnlBotones.setVisible(true);
-        CardLayout paletas = (CardLayout)(FormInicio.pnlPrincipal.getLayout());
-        FormInicio.pnlPrincipal.remove(this);
+        int id = GestorUsuarios.Login(txtUsuario.getText(), 
+                String.valueOf(txtClave.getPassword()));
+        if(id!=0)
+        {
+            FormInicio.id=id;
+            formulario.cargarUsuario();
+            PanelPerrosLista pnlPerros = new PanelPerrosLista();
+            FormInicio.pnlPrincipal.add(pnlPerros,"menu2");
+            FormInicio.pnlActual = pnlPerros;
+            pnlBotones.setVisible(true);
+            CardLayout paletas = (CardLayout)(FormInicio.pnlPrincipal.getLayout());
+            FormInicio.pnlPrincipal.remove(this);
+        }else
+            JOptionPane.showMessageDialog(this,"Usuario o clave incorrectos","Error",JOptionPane.ERROR_MESSAGE);
+        
     }//GEN-LAST:event_btnAceptarActionPerformed
 
+    private void btnEspanolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEspanolActionPerformed
+        formulario.cargarIdioma("Espanol");
+        cargarTextos();
+    }//GEN-LAST:event_btnEspanolActionPerformed
+
+    private void btnInglesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInglesActionPerformed
+        formulario.cargarIdioma("English");
+        cargarTextos();
+    }//GEN-LAST:event_btnInglesActionPerformed
+
+    private void cargarTextos()
+    {
+        Properties propiedad = FormInicio.propiedades;
+        lblUsuario.setText(propiedades.getProperty("Usuario"));
+        lblClave.setText(propiedades.getProperty("Clave"));
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton btnEspanol;
+    private javax.swing.JButton btnIngles;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel lblClave;
+    private javax.swing.JLabel lblUsuario;
+    private javax.swing.JPanel pnlLogin;
+    private javax.swing.JPasswordField txtClave;
+    private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }

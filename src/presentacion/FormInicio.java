@@ -1,16 +1,21 @@
 package presentacion;
 
+import dominio.GestorUsuarios;
 import java.awt.CardLayout;
+import java.util.Properties;
 import javax.swing.JPanel;
+import propiedades.Propiedades;
 
 public class FormInicio extends javax.swing.JFrame {
 
     public static JPanel pnlActual;
     public static JPanel pnlPrincipal;
+    public static Properties propiedades;
+    public static int id;
     public FormInicio() {
         initComponents();
         pnlBotones.setVisible(false);
-        PanelLogin pnlLogin = new PanelLogin(pnlBotones);
+        PanelLogin pnlLogin = new PanelLogin(pnlBotones,this);
         pnlInicio.add(pnlLogin,"menu1");
         CardLayout paletas = (CardLayout)(pnlInicio.getLayout()); 
         pnlPrincipal = pnlInicio;
@@ -27,9 +32,12 @@ public class FormInicio extends javax.swing.JFrame {
         btnEspacio = new javax.swing.JButton();
         btnPerfil = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
+        lblUsuario = new javax.swing.JLabel();
+        lblConexion = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
+        mArchivo = new javax.swing.JMenu();
+        mAccesibilidad = new javax.swing.JMenu();
+        mAyuda = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setExtendedState(2);
@@ -100,14 +108,17 @@ public class FormInicio extends javax.swing.JFrame {
                 .addComponent(btnPerfil)
                 .addGap(18, 18, 18)
                 .addComponent(btnSalir)
-                .addContainerGap(393, Short.MAX_VALUE))
+                .addContainerGap(327, Short.MAX_VALUE))
         );
 
-        jMenu1.setText("File");
-        jMenuBar1.add(jMenu1);
+        mArchivo.setText("Archivo");
+        jMenuBar1.add(mArchivo);
 
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
+        mAccesibilidad.setText("Accesibilidad");
+        jMenuBar1.add(mAccesibilidad);
+
+        mAyuda.setText("Ayuda");
+        jMenuBar1.add(mAyuda);
 
         setJMenuBar(jMenuBar1);
 
@@ -118,16 +129,30 @@ public class FormInicio extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(pnlBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 545, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addComponent(lblUsuario)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblConexion)
+                .addGap(203, 203, 203))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addGap(110, 110, 110)
-                    .addComponent(pnlInicio, javax.swing.GroupLayout.DEFAULT_SIZE, 532, Short.MAX_VALUE)))
+                    .addGap(105, 105, 105)
+                    .addComponent(pnlInicio, javax.swing.GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlBotones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblUsuario)
+                    .addComponent(lblConexion))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addComponent(pnlBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(pnlInicio, javax.swing.GroupLayout.DEFAULT_SIZE, 636, Short.MAX_VALUE))
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGap(69, 69, 69)
+                    .addComponent(pnlInicio, javax.swing.GroupLayout.DEFAULT_SIZE, 567, Short.MAX_VALUE)))
         );
 
         pack();
@@ -169,7 +194,25 @@ public class FormInicio extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
+    public void cargarUsuario()
+    {
+        String[] datos = GestorUsuarios.Logear(id);
+        lblUsuario.setText("Usuario: "+datos[1]);
+        lblConexion.setText("Última conexión: "+datos[0]);
+    }
 
+    public void cargarIdioma(String idioma)
+    {
+        propiedades = new Propiedades(idioma);
+        btnEspacio.setText(propiedades.getProperty("Espacio"));
+        btnPerfil.setText(propiedades.getProperty("Perfil"));
+        btnPerros.setText(propiedades.getProperty("Perros"));
+        btnSalir.setText(propiedades.getProperty("Salir"));
+        btnVoluntarios.setText(propiedades.getProperty("Voluntarios"));
+        mAccesibilidad.setText(propiedades.getProperty("Accesibilidad"));
+        mArchivo.setText(propiedades.getProperty("Archivo"));
+        mAyuda.setText(propiedades.getProperty("Ayuda"));
+    }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -208,9 +251,12 @@ public class FormInicio extends javax.swing.JFrame {
     private javax.swing.JButton btnPerros;
     private javax.swing.JButton btnSalir;
     private javax.swing.JButton btnVoluntarios;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JLabel lblConexion;
+    private javax.swing.JLabel lblUsuario;
+    private javax.swing.JMenu mAccesibilidad;
+    private javax.swing.JMenu mArchivo;
+    private javax.swing.JMenu mAyuda;
     private javax.swing.JPanel pnlBotones;
     private javax.swing.JPanel pnlInicio;
     // End of variables declaration//GEN-END:variables
