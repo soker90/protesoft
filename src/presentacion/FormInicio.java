@@ -142,7 +142,7 @@ public class FormInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPerrosActionPerformed
 
     private void btnVoluntariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoluntariosActionPerformed
-        PanelVoluntarios pnlVoluntarios = new PanelVoluntarios();
+        PanelVoluntariosLista pnlVoluntarios = new PanelVoluntariosLista();
         pnlInicio.add(pnlVoluntarios,"menuV");
         CardLayout paletas = (CardLayout)(pnlVoluntarios.getLayout());
         pnlInicio.remove(pnlActual);
