@@ -2,13 +2,15 @@
 package presentacion;
 
 import dominio.GestorUsuarios;
+import dominio.PanelP;
 import java.awt.CardLayout;
+import java.awt.Font;
 import java.util.Properties;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import static presentacion.FormInicio.propiedades;
 
-public class PanelLogin extends javax.swing.JPanel {
+public class PanelLogin extends PanelP {
 
     JPanel pnlBotones;
     FormInicio formulario;
@@ -160,6 +162,16 @@ public class PanelLogin extends javax.swing.JPanel {
         Properties propiedad = FormInicio.propiedades;
         lblUsuario.setText(propiedades.getProperty("Usuario"));
         lblClave.setText(propiedades.getProperty("Clave"));
+        btnAceptar.setText(propiedades.getProperty("Aceptar"));
+    }
+    
+    
+    public void setFont(int numero)
+    {
+        String nombre = lblUsuario.getFont().getName();
+        int estilo = lblUsuario.getFont().getStyle();
+        lblUsuario.setFont(new Font(nombre, estilo, numero));
+        lblClave.setFont(new Font(nombre, estilo, numero));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

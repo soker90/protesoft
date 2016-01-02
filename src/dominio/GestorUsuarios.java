@@ -1,7 +1,10 @@
 package dominio;
 
 import java.sql.ResultSet;
+import java.util.Calendar;
+import java.util.Date;
 import persistencia.Agente;
+import presentacion.FormInicio;
 
 public class GestorUsuarios {
     public static int Login(String usuario, String pass) {
@@ -33,6 +36,22 @@ public class GestorUsuarios {
      }
 
         return datos;
+    }
+    
+    public static void ActualizarConexion() {
+        Calendar c = Calendar.getInstance();
+        String dia = Integer.toString(c.get(Calendar.DAY_OF_MONTH));
+        String mes = Integer.toString(c.get(Calendar.MONTH)+1);
+        String anyo = Integer.toString(c.get(Calendar.YEAR));
+        String fecha = dia+"/"+mes+"/"+anyo;
+        System.out.println(fecha);
+        try {
+                int rs = Agente.getAgente().insert("UPDATE protesoft_usuarios  SET "
+                        + "ultima_conexion='"+fecha+"' WHERE id="+FormInicio.id);
+
+        } catch (Exception e) {
+            System.out.println(e);
+     }
     }
     
 }

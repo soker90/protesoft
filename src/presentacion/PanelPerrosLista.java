@@ -1,48 +1,39 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package presentacion;
 
 import dominio.GestorPerros;
+import dominio.PanelP;
 import dominio.Perro;
 import java.awt.CardLayout;
 import java.awt.Component;
+import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Properties;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.TableCellRenderer;
 
-/**
- *
- * @author edu
- */
-public class PanelPerrosLista extends javax.swing.JPanel {
+public class PanelPerrosLista extends PanelP {
 
-    /**
-     * Creates new form PanelPerrosLista
-     */
     ArrayList<Perro> perros;
     public PanelPerrosLista() {
         initComponents();
         setTabla();
+        btnNuevo.setText(FormInicio.propiedades.getProperty("Nuevo"));
     }
 
     private void setTabla() {
 
+        Properties propiedad = FormInicio.propiedades;
         String[] columnas = new String[]{
             "Id",
-            "Nombre",
-            "Edad",
-            "Raza",
-            "Editar",
-            "Eliminar"
+            propiedad.getProperty("Nombre"),
+            propiedad.getProperty("Edad"),
+            propiedad.getProperty("Raza"),
+            propiedad.getProperty("Editar"),
+            propiedad.getProperty("Eliminar")
         };
 
         final Class[] tiposColumnas = new Class[]{
@@ -61,12 +52,9 @@ public class PanelPerrosLista extends javax.swing.JPanel {
         for (int i = 0; i < perros.size(); i++) {
             datos[i] = new Object[]{perros.get(i).getId(),
                 perros.get(i).getNombre(),perros.get(i).getEdad(),
-                perros.get(i).getRaza(), new JButton("Editar"),
-                new JButton("Eliminar")};
+                perros.get(i).getRaza(), new JButton(propiedad.getProperty("Editar")),
+                new JButton(propiedad.getProperty("Eliminar"))};
         }
-        
-        
-        
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
                 datos,
@@ -127,6 +115,13 @@ public class PanelPerrosLista extends javax.swing.JPanel {
                 }
             }
         });
+    }
+    
+    public void setFont(int numero)
+    {
+        String nombre = jTable1.getFont().getName();
+        int estilo = jTable1.getFont().getStyle();
+        jTable1.setFont(new Font(nombre, estilo, numero));
     }
     
     

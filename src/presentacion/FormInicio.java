@@ -1,8 +1,11 @@
 package presentacion;
 
 import dominio.GestorUsuarios;
+import dominio.PanelP;
 import java.awt.CardLayout;
+import java.awt.Font;
 import java.util.Properties;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import propiedades.Propiedades;
 
@@ -14,11 +17,14 @@ public class FormInicio extends javax.swing.JFrame {
     public static int id;
     public FormInicio() {
         initComponents();
+        cargarIdioma("Espanol");
         pnlBotones.setVisible(false);
         PanelLogin pnlLogin = new PanelLogin(pnlBotones,this);
         pnlInicio.add(pnlLogin,"menu1");
         CardLayout paletas = (CardLayout)(pnlInicio.getLayout()); 
         pnlPrincipal = pnlInicio;
+        id=0;
+        pnlActual = pnlLogin;
     }
 
     @SuppressWarnings("unchecked")
@@ -36,11 +42,21 @@ public class FormInicio extends javax.swing.JFrame {
         lblConexion = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         mArchivo = new javax.swing.JMenu();
+        miSalir = new javax.swing.JMenuItem();
         mAccesibilidad = new javax.swing.JMenu();
+        miPequeno = new javax.swing.JMenuItem();
+        miMediana = new javax.swing.JMenuItem();
+        miGrande = new javax.swing.JMenuItem();
         mAyuda = new javax.swing.JMenu();
+        miAcerca = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setExtendedState(2);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         pnlInicio.setLayout(new java.awt.CardLayout());
 
@@ -112,12 +128,55 @@ public class FormInicio extends javax.swing.JFrame {
         );
 
         mArchivo.setText("Archivo");
+
+        miSalir.setText("Salir");
+        miSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miSalirActionPerformed(evt);
+            }
+        });
+        mArchivo.add(miSalir);
+
         jMenuBar1.add(mArchivo);
 
-        mAccesibilidad.setText("Accesibilidad");
+        mAccesibilidad.setText("Fuente");
+
+        miPequeno.setText("Pequeña");
+        miPequeno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miPequenoActionPerformed(evt);
+            }
+        });
+        mAccesibilidad.add(miPequeno);
+
+        miMediana.setText("Mediana");
+        miMediana.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miMedianaActionPerformed(evt);
+            }
+        });
+        mAccesibilidad.add(miMediana);
+
+        miGrande.setText("Grande");
+        miGrande.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miGrandeActionPerformed(evt);
+            }
+        });
+        mAccesibilidad.add(miGrande);
+
         jMenuBar1.add(mAccesibilidad);
 
         mAyuda.setText("Ayuda");
+
+        miAcerca.setText("Acerca de");
+        miAcerca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miAcercaActionPerformed(evt);
+            }
+        });
+        mAyuda.add(miAcerca);
+
         jMenuBar1.add(mAyuda);
 
         setJMenuBar(jMenuBar1);
@@ -194,11 +253,38 @@ public class FormInicio extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        if(id!=0)
+            GestorUsuarios.ActualizarConexion();
+    }//GEN-LAST:event_formWindowClosing
+
+    private void miPequenoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miPequenoActionPerformed
+        ((PanelP)pnlActual).setFont(8);
+    }//GEN-LAST:event_miPequenoActionPerformed
+
+    private void miMedianaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miMedianaActionPerformed
+        ((PanelP)pnlActual).setFont(12);
+    }//GEN-LAST:event_miMedianaActionPerformed
+
+    private void miGrandeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miGrandeActionPerformed
+        ((PanelP)pnlActual).setFont(16);
+    }//GEN-LAST:event_miGrandeActionPerformed
+
+    private void miSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miSalirActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_miSalirActionPerformed
+
+    private void miAcercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miAcercaActionPerformed
+        JOptionPane.showMessageDialog(this, "ProteSoft v1.0"
+                + "\nAutor: Eduardo Parra Mazuecos"
+                + "\nLicencia GPLv3", "Acerca de", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_miAcercaActionPerformed
+
     public void cargarUsuario()
     {
         String[] datos = GestorUsuarios.Logear(id);
-        lblUsuario.setText("Usuario: "+datos[1]);
-        lblConexion.setText("Última conexión: "+datos[0]);
+        lblUsuario.setText(propiedades.getProperty("Usuario")+": "+datos[1]);
+        lblConexion.setText(propiedades.getProperty("UltimaConexion")+": "+datos[0]);
     }
 
     public void cargarIdioma(String idioma)
@@ -212,6 +298,24 @@ public class FormInicio extends javax.swing.JFrame {
         mAccesibilidad.setText(propiedades.getProperty("Accesibilidad"));
         mArchivo.setText(propiedades.getProperty("Archivo"));
         mAyuda.setText(propiedades.getProperty("Ayuda"));
+        miPequeno.setText(propiedades.getProperty("Pequena"));
+        miMediana.setText(propiedades.getProperty("Mediana"));
+        miGrande.setText(propiedades.getProperty("Grande"));
+        miSalir.setText(propiedades.getProperty("Salir"));
+    }
+    
+    public void setFont(int numero)
+    {
+        String nombre = lblConexion.getFont().getName();
+        int estilo = lblConexion.getFont().getStyle();
+        lblConexion.setFont(new Font(nombre, estilo, numero));
+        lblUsuario.setFont(new Font(nombre, estilo, numero));
+        mAccesibilidad.setFont(new Font(nombre, estilo, numero));
+        mArchivo.setFont(new Font(nombre, estilo, numero));
+        mAyuda.setFont(new Font(nombre, estilo, numero));
+        miGrande.setFont(new Font(nombre, estilo, numero));
+        miMediana.setFont(new Font(nombre, estilo, numero));
+        miPequeno.setFont(new Font(nombre, estilo, numero));
     }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -257,7 +361,13 @@ public class FormInicio extends javax.swing.JFrame {
     private javax.swing.JMenu mAccesibilidad;
     private javax.swing.JMenu mArchivo;
     private javax.swing.JMenu mAyuda;
+    private javax.swing.JMenuItem miAcerca;
+    private javax.swing.JMenuItem miGrande;
+    private javax.swing.JMenuItem miMediana;
+    private javax.swing.JMenuItem miPequeno;
+    private javax.swing.JMenuItem miSalir;
     private javax.swing.JPanel pnlBotones;
     private javax.swing.JPanel pnlInicio;
     // End of variables declaration//GEN-END:variables
+
 }

@@ -7,14 +7,17 @@ package presentacion;
 
 import dominio.GestorPerros;
 import dominio.GestorVoluntarios;
+import dominio.PanelP;
 import dominio.Perro;
 import dominio.Voluntario;
 import java.awt.CardLayout;
 import java.awt.Component;
+import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Properties;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -25,7 +28,7 @@ import javax.swing.table.TableCellRenderer;
  *
  * @author edu
  */
-public class PanelVoluntariosLista extends javax.swing.JPanel {
+public class PanelVoluntariosLista extends PanelP {
 
     /**
      * Creates new form PanelPerrosLista
@@ -34,17 +37,19 @@ public class PanelVoluntariosLista extends javax.swing.JPanel {
     public PanelVoluntariosLista() {
         initComponents();
         setTabla();
+        btnNuevo.setText(FormInicio.propiedades.getProperty("Nuevo"));
     }
 
     private void setTabla() {
-
+        Properties propiedad = FormInicio.propiedades;
         String[] columnas = new String[]{
             "Id",
             "DNI",
-            "Nombre",
-            "Apellidos",
-            "Editar",
-            "Eliminar"
+            propiedad.getProperty("Nombre"),
+            propiedad.getProperty("Apellidos"),
+            propiedad.getProperty("Editar"),
+            propiedad.getProperty("Eliminar") 
+ 
         };
 
         final Class[] tiposColumnas = new Class[]{
@@ -63,8 +68,8 @@ public class PanelVoluntariosLista extends javax.swing.JPanel {
         for (int i = 0; i < voluntarios.size(); i++) {
             datos[i] = new Object[]{voluntarios.get(i).getId(),
                 voluntarios.get(i).getDni(),voluntarios.get(i).getNombre(),
-                voluntarios.get(i).getApellidos(), new JButton("Editar"),
-                new JButton("Eliminar")};
+                voluntarios.get(i).getApellidos(), new JButton(propiedad.getProperty("Editar")),
+                new JButton(propiedad.getProperty("Eliminar"))};
         }
         
         
@@ -129,6 +134,13 @@ public class PanelVoluntariosLista extends javax.swing.JPanel {
                 }
             }
         });
+    }
+    
+    public void setFont(int numero)
+    {
+        String nombre = jTable1.getFont().getName();
+        int estilo = jTable1.getFont().getStyle();
+        jTable1.setFont(new Font(nombre, estilo, numero));
     }
     
     

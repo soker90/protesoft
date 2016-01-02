@@ -2,24 +2,18 @@ package presentacion;
 
 import dominio.GestorPerros;
 import dominio.Imagen;
+import dominio.PanelP;
 import dominio.Perro;
 import java.awt.CardLayout;
-import java.awt.Graphics;
-import java.io.File;
-import java.nio.file.Files;
+import java.awt.Font;
 import javax.swing.JFileChooser;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.nio.channels.FileChannel;
-import javax.swing.ImageIcon;
-import javax.swing.JPanel;
-import javax.swing.filechooser.FileSystemView;
+import java.util.Properties;
 
-public class PanelPerroEditar extends javax.swing.JPanel {
+public class PanelPerroEditar extends PanelP {
 
     private int id;
     public PanelPerroEditar(int id) {
@@ -60,6 +54,22 @@ public class PanelPerroEditar extends javax.swing.JPanel {
         txtDescripcion.setText(p.getDescripcion());
         txtVideo.setText(p.getVideo());
        this.cargarImagenes();
+       Properties propiedad = FormInicio.propiedades;
+       lblNombre.setText(propiedad.getProperty("Nombre"));
+       lblSexo.setText(propiedad.getProperty("Sexo"));
+       lblRaza.setText(propiedad.getProperty("Raza"));
+       lblTamano.setText(propiedad.getProperty("Tamano"));
+       lblEdad.setText(propiedad.getProperty("Edad"));
+       lblFecha.setText(propiedad.getProperty("FechaEntrada"));
+       lblChip.setText(propiedad.getProperty("Chip"));
+       lblCachorro.setText(propiedad.getProperty("Cachorro"));
+       lblVacunado.setText(propiedad.getProperty("Vacunado"));
+       lblEsterilizado.setText(propiedad.getProperty("Esterilizado"));
+       lblEnfermedades.setText(propiedad.getProperty("Enfermedades"));
+       lblDescripcion.setText(propiedad.getProperty("Descripcion"));
+       lblVideo.setText(propiedad.getProperty("Video"));
+       btnImagen.setText(propiedad.getProperty("AnadirImagen"));
+       btnAceptar.setText(propiedad.getProperty("Aceptar"));
         
     }
 
@@ -69,43 +79,43 @@ public class PanelPerroEditar extends javax.swing.JPanel {
 
         jScrollPane3 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        lblNombre = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
+        lblSexo = new javax.swing.JLabel();
         rbSexoM = new javax.swing.JRadioButton();
         rbSexoH = new javax.swing.JRadioButton();
-        jLabel3 = new javax.swing.JLabel();
+        lblRaza = new javax.swing.JLabel();
         txtRaza = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
+        lblTamano = new javax.swing.JLabel();
         txtTamanyo = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
+        lblEdad = new javax.swing.JLabel();
         txtEdad = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
+        lblFecha = new javax.swing.JLabel();
         txtFecha = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
+        lblChip = new javax.swing.JLabel();
         txtChip = new javax.swing.JTextField();
         rbChipS = new javax.swing.JRadioButton();
         rbChipN = new javax.swing.JRadioButton();
         jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        lblCachorro = new javax.swing.JLabel();
         rbCachorroS = new javax.swing.JRadioButton();
         rbCachorroN = new javax.swing.JRadioButton();
         rbPppN = new javax.swing.JRadioButton();
         rbPppS = new javax.swing.JRadioButton();
         jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
+        lblVacunado = new javax.swing.JLabel();
         rbVacunadoS = new javax.swing.JRadioButton();
         rbVacunadoN = new javax.swing.JRadioButton();
-        jLabel12 = new javax.swing.JLabel();
+        lblEsterilizado = new javax.swing.JLabel();
         rbEsterilizadoS = new javax.swing.JRadioButton();
         rbEsterilizadoN = new javax.swing.JRadioButton();
-        jLabel13 = new javax.swing.JLabel();
+        lblEnfermedades = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtEnfermedades = new javax.swing.JTextArea();
-        jLabel14 = new javax.swing.JLabel();
+        lblDescripcion = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtDescripcion = new javax.swing.JTextArea();
-        jLabel15 = new javax.swing.JLabel();
+        lblVideo = new javax.swing.JLabel();
         txtVideo = new javax.swing.JTextField();
         btnAceptar = new javax.swing.JButton();
         btnImagen = new javax.swing.JButton();
@@ -114,9 +124,9 @@ public class PanelPerroEditar extends javax.swing.JPanel {
 
         setLayout(new java.awt.CardLayout());
 
-        jLabel1.setText("Nombre");
+        lblNombre.setText("Nombre");
 
-        jLabel2.setText("Sexo");
+        lblSexo.setText("Sexo");
 
         rbSexoM.setText("Macho");
         rbSexoM.addActionListener(new java.awt.event.ActionListener() {
@@ -132,15 +142,15 @@ public class PanelPerroEditar extends javax.swing.JPanel {
             }
         });
 
-        jLabel3.setText("Raza");
+        lblRaza.setText("Raza");
 
-        jLabel4.setText("Tamaño");
+        lblTamano.setText("Tamaño");
 
-        jLabel5.setText("Edad");
+        lblEdad.setText("Edad");
 
-        jLabel6.setText("Fecha entrada");
+        lblFecha.setText("Fecha entrada");
 
-        jLabel7.setText("Tiene chip");
+        lblChip.setText("Tiene chip");
 
         rbChipS.setText("Si");
         rbChipS.addActionListener(new java.awt.event.ActionListener() {
@@ -158,7 +168,7 @@ public class PanelPerroEditar extends javax.swing.JPanel {
 
         jLabel8.setText("Nº");
 
-        jLabel9.setText("Cachorro");
+        lblCachorro.setText("Cachorro");
 
         rbCachorroS.setText("Si");
         rbCachorroS.addActionListener(new java.awt.event.ActionListener() {
@@ -190,7 +200,7 @@ public class PanelPerroEditar extends javax.swing.JPanel {
 
         jLabel10.setText("PPP");
 
-        jLabel11.setText("Vacunado");
+        lblVacunado.setText("Vacunado");
 
         rbVacunadoS.setText("Si");
         rbVacunadoS.addActionListener(new java.awt.event.ActionListener() {
@@ -206,7 +216,7 @@ public class PanelPerroEditar extends javax.swing.JPanel {
             }
         });
 
-        jLabel12.setText("Esterilizado");
+        lblEsterilizado.setText("Esterilizado");
 
         rbEsterilizadoS.setText("Si");
         rbEsterilizadoS.addActionListener(new java.awt.event.ActionListener() {
@@ -222,19 +232,19 @@ public class PanelPerroEditar extends javax.swing.JPanel {
             }
         });
 
-        jLabel13.setText("Enfermedades y tratamientos");
+        lblEnfermedades.setText("Enfermedades y tratamientos");
 
         txtEnfermedades.setColumns(20);
         txtEnfermedades.setRows(5);
         jScrollPane1.setViewportView(txtEnfermedades);
 
-        jLabel14.setText("Descripción");
+        lblDescripcion.setText("Descripción");
 
         txtDescripcion.setColumns(20);
         txtDescripcion.setRows(5);
         jScrollPane2.setViewportView(txtDescripcion);
 
-        jLabel15.setText("Video");
+        lblVideo.setText("Video");
 
         btnAceptar.setText("Aceptar");
         btnAceptar.addActionListener(new java.awt.event.ActionListener() {
@@ -276,19 +286,19 @@ public class PanelPerroEditar extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
+                                .addComponent(lblEdad)
                                 .addGap(74, 74, 74)
                                 .addComponent(txtEdad))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
+                                .addComponent(lblTamano)
                                 .addGap(53, 53, 53)
                                 .addComponent(txtTamanyo))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
+                                .addComponent(lblRaza)
                                 .addGap(75, 75, 75)
                                 .addComponent(txtRaza))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
+                                .addComponent(lblNombre)
                                 .addGap(52, 52, 52)
                                 .addComponent(txtNombre))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
@@ -296,12 +306,12 @@ public class PanelPerroEditar extends javax.swing.JPanel {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel6)
-                                            .addComponent(jLabel7)
-                                            .addComponent(jLabel9)
-                                            .addComponent(jLabel11)
+                                            .addComponent(lblFecha)
+                                            .addComponent(lblChip)
+                                            .addComponent(lblCachorro)
+                                            .addComponent(lblVacunado)
                                             .addComponent(jLabel10)
-                                            .addComponent(jLabel12))
+                                            .addComponent(lblEsterilizado))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(txtFecha)
@@ -335,13 +345,13 @@ public class PanelPerroEditar extends javax.swing.JPanel {
                                             .addComponent(jScrollPane1)
                                             .addComponent(jScrollPane2)
                                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jLabel15)
+                                                .addComponent(lblVideo)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(txtVideo))
                                             .addGroup(jPanel1Layout.createSequentialGroup()
                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jLabel13)
-                                                    .addComponent(jLabel14))
+                                                    .addComponent(lblEnfermedades)
+                                                    .addComponent(lblDescripcion))
                                                 .addGap(0, 0, Short.MAX_VALUE)))
                                         .addGap(5, 5, 5))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -351,7 +361,7 @@ public class PanelPerroEditar extends javax.swing.JPanel {
                         .addGap(39, 39, 39))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(3, 3, 3)
-                        .addComponent(jLabel2)
+                        .addComponent(lblSexo)
                         .addGap(72, 72, 72)
                         .addComponent(rbSexoM)
                         .addGap(18, 18, 18)
@@ -363,32 +373,32 @@ public class PanelPerroEditar extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                    .addComponent(lblNombre)
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
+                    .addComponent(lblSexo)
                     .addComponent(rbSexoM)
                     .addComponent(rbSexoH))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
+                    .addComponent(lblRaza)
                     .addComponent(txtRaza, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
+                    .addComponent(lblTamano)
                     .addComponent(txtTamanyo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
+                    .addComponent(lblFecha)
                     .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
+                    .addComponent(lblChip)
                     .addComponent(rbChipS)
                     .addComponent(rbChipN)
                     .addComponent(jLabel8)
@@ -397,12 +407,12 @@ public class PanelPerroEditar extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rbCachorroS)
                     .addComponent(rbCachorroN)
-                    .addComponent(jLabel9))
+                    .addComponent(lblCachorro))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rbVacunadoS)
                     .addComponent(rbVacunadoN)
-                    .addComponent(jLabel11))
+                    .addComponent(lblVacunado))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
@@ -410,25 +420,25 @@ public class PanelPerroEditar extends javax.swing.JPanel {
                     .addComponent(rbPppN))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
+                    .addComponent(lblEsterilizado)
                     .addComponent(rbEsterilizadoS)
                     .addComponent(rbEsterilizadoN))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel13)
+                .addComponent(lblEnfermedades)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel14)
+                .addComponent(lblDescripcion)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtVideo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel15))
+                    .addComponent(lblVideo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnImagen)
                 .addGap(18, 18, 18)
-                .addComponent(pnlImagenesP, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                .addComponent(pnlImagenesP)
                 .addGap(18, 18, 18)
                 .addComponent(btnAceptar)
                 .addContainerGap(44, Short.MAX_VALUE))
@@ -558,28 +568,68 @@ public class PanelPerroEditar extends javax.swing.JPanel {
         
     }
     
+    public void setFont(int numero) {
+        String nombre = lblCachorro.getFont().getName();
+        int estilo = lblCachorro.getFont().getStyle();
+        lblCachorro.setFont(new Font(nombre, estilo, numero));
+        lblChip.setFont(new Font(nombre, estilo, numero));
+        lblDescripcion.setFont(new Font(nombre, estilo, numero));
+        lblEdad.setFont(new Font(nombre, estilo, numero));
+        lblEnfermedades.setFont(new Font(nombre, estilo, numero));
+        lblEsterilizado.setFont(new Font(nombre, estilo, numero));
+        lblFecha.setFont(new Font(nombre, estilo, numero));
+        lblNombre.setFont(new Font(nombre, estilo, numero));
+        lblRaza.setFont(new Font(nombre, estilo, numero));
+        lblSexo.setFont(new Font(nombre, estilo, numero));
+        lblTamano.setFont(new Font(nombre, estilo, numero));
+        lblVacunado.setFont(new Font(nombre, estilo, numero));
+        lblVideo.setFont(new Font(nombre, estilo, numero));
+        txtChip.setFont(new Font(nombre, estilo, numero));
+        txtDescripcion.setFont(new Font(nombre, estilo, numero));
+        txtEdad.setFont(new Font(nombre, estilo, numero));
+        txtEnfermedades.setFont(new Font(nombre, estilo, numero));
+        txtFecha.setFont(new Font(nombre, estilo, numero));
+        txtNombre.setFont(new Font(nombre, estilo, numero));
+        txtRaza.setFont(new Font(nombre, estilo, numero));
+        txtTamanyo.setFont(new Font(nombre, estilo, numero));
+        txtVideo.setFont(new Font(nombre, estilo, numero));
+        rbCachorroN.setFont(new Font(nombre, estilo, numero));
+        rbCachorroS.setFont(new Font(nombre, estilo, numero));
+        rbChipN.setFont(new Font(nombre, estilo, numero));
+        rbChipS.setFont(new Font(nombre, estilo, numero));
+        rbEsterilizadoN.setFont(new Font(nombre, estilo, numero));
+        rbEsterilizadoS.setFont(new Font(nombre, estilo, numero));
+        rbPppN.setFont(new Font(nombre, estilo, numero));
+        rbPppS.setFont(new Font(nombre, estilo, numero));
+        rbSexoH.setFont(new Font(nombre, estilo, numero));
+        rbSexoM.setFont(new Font(nombre, estilo, numero));
+        rbVacunadoN.setFont(new Font(nombre, estilo, numero));
+        rbVacunadoS.setFont(new Font(nombre, estilo, numero));
+        
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnImagen;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JLabel lblCachorro;
+    private javax.swing.JLabel lblChip;
+    private javax.swing.JLabel lblDescripcion;
+    private javax.swing.JLabel lblEdad;
+    private javax.swing.JLabel lblEnfermedades;
+    private javax.swing.JLabel lblEsterilizado;
+    private javax.swing.JLabel lblFecha;
+    private javax.swing.JLabel lblNombre;
+    private javax.swing.JLabel lblRaza;
+    private javax.swing.JLabel lblSexo;
+    private javax.swing.JLabel lblTamano;
+    private javax.swing.JLabel lblVacunado;
+    private javax.swing.JLabel lblVideo;
     private javax.swing.JPanel pnlImagenes;
     private javax.swing.JScrollPane pnlImagenesP;
     private javax.swing.JRadioButton rbCachorroN;
@@ -604,4 +654,5 @@ public class PanelPerroEditar extends javax.swing.JPanel {
     private javax.swing.JTextField txtTamanyo;
     private javax.swing.JTextField txtVideo;
     // End of variables declaration//GEN-END:variables
+
 }
