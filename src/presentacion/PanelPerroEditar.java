@@ -70,6 +70,7 @@ public class PanelPerroEditar extends PanelP {
        lblVideo.setText(propiedad.getProperty("Video"));
        btnImagen.setText(propiedad.getProperty("AnadirImagen"));
        btnAceptar.setText(propiedad.getProperty("Aceptar"));
+        setFont(FormInicio.fuente);
         
     }
 

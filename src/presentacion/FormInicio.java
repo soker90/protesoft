@@ -14,9 +14,11 @@ public class FormInicio extends javax.swing.JFrame {
     public static JPanel pnlActual;
     public static JPanel pnlPrincipal;
     public static Properties propiedades;
+    public static int fuente;
     public static int id;
     public FormInicio() {
         initComponents();
+        fuente = 12;
         cargarIdioma("Espanol");
         pnlBotones.setVisible(false);
         PanelLogin pnlLogin = new PanelLogin(pnlBotones,this);
@@ -25,6 +27,7 @@ public class FormInicio extends javax.swing.JFrame {
         pnlPrincipal = pnlInicio;
         id=0;
         pnlActual = pnlLogin;
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -260,14 +263,20 @@ public class FormInicio extends javax.swing.JFrame {
 
     private void miPequenoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miPequenoActionPerformed
         ((PanelP)pnlActual).setFont(8);
+        setFont(8);
+        fuente=8;
     }//GEN-LAST:event_miPequenoActionPerformed
 
     private void miMedianaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miMedianaActionPerformed
         ((PanelP)pnlActual).setFont(12);
+        setFont(12);
+        fuente=12;
     }//GEN-LAST:event_miMedianaActionPerformed
 
     private void miGrandeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miGrandeActionPerformed
         ((PanelP)pnlActual).setFont(16);
+        setFont(16);
+        fuente=16;
     }//GEN-LAST:event_miGrandeActionPerformed
 
     private void miSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miSalirActionPerformed

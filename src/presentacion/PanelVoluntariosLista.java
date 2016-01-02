@@ -38,6 +38,7 @@ public class PanelVoluntariosLista extends PanelP {
         initComponents();
         setTabla();
         btnNuevo.setText(FormInicio.propiedades.getProperty("Nuevo"));
+        setFont(FormInicio.fuente);
     }
 
     private void setTabla() {

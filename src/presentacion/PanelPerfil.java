@@ -55,6 +55,7 @@ public class PanelPerfil extends PanelP {
        btnAceptar.setText(propiedad.getProperty("Aceptar"));
        rbConocimientosS.setText(propiedad.getProperty("Si"));
        rbConocimientosN.setText(propiedad.getProperty("No"));
+        setFont(FormInicio.fuente);
         
     }
 
