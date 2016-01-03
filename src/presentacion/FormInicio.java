@@ -311,6 +311,7 @@ public class FormInicio extends javax.swing.JFrame {
         miMediana.setText(propiedades.getProperty("Mediana"));
         miGrande.setText(propiedades.getProperty("Grande"));
         miSalir.setText(propiedades.getProperty("Salir"));
+        miAcerca.setText(propiedades.getProperty("AcercaDe"));
     }
     
     public void setFont(int numero)

@@ -3,15 +3,14 @@ package presentacion;
 import dominio.ImagenGrafico;
 import dominio.MiAreaDibujo;
 import dominio.PanelP;
-import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.util.Properties;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 
@@ -86,6 +85,7 @@ public class PanelEspacio extends PanelP {
         cursorHembra  = toolkit.createCustomCursor(imagHembra,new Point(0,0),"CURSOR_HEMBRA");
         cursorCachorro  = toolkit.createCustomCursor(imagCachorro,new Point(0,0),"CURSOR_CACHORRO");
         cursorAnciano  = toolkit.createCustomCursor(imagAnciano,new Point(0,0),"CURSOR_ANCIANO");
+        cargarIdioma();
     }
     
     private void miAreaDibujoMousePressed(MouseEvent e) {                                          
@@ -225,29 +225,29 @@ public class PanelEspacio extends PanelP {
     }//GEN-LAST:event_btnImagenActionPerformed
 
     private void btnSitioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSitioActionPerformed
-        switch(cmbSitio.getSelectedItem().toString())
+        switch(cmbSitio.getSelectedIndex())
         {
-            case "Almacen":
+            case 0:
                 modo= ALMACEN;
                 this.setCursor(cursorAlmacen);
                 break;
-            case "Sala de casilleros":
+            case 1:
                 modo= CASILLEROS;
                 this.setCursor(cursorCasilleros);
                 break;
-            case "Vesturario":
+            case 2:
                 modo= VESTUARIO;
                 this.setCursor(cursorVestuario);
                 break;
-            case "Sala de curas":
+            case 3:
                 modo= CURAS;
                 this.setCursor(cursorCuras);
                 break;
-            case "Patio":
+            case 4:
                 modo= PATIO;
                 this.setCursor(cursorPatio);
                 break;
-            case "Aparcamiento":
+            case 5:
                 modo= APARCAMIENTO;
                 this.setCursor(cursorAparcamiento);
                 break;
@@ -281,6 +281,34 @@ public class PanelEspacio extends PanelP {
     @Override
     public void setFont(int numero) {
         
+    }
+    
+    public void cargarIdioma()
+    {
+        Properties propiedades = FormInicio.propiedades;
+        btnImagen.setText(propiedades.getProperty("AnadirImagen"));
+        btnPerro.setText(propiedades.getProperty("Anadir"));
+        btnSitio.setText(propiedades.getProperty("Anadir"));
+        
+        String[] sitios = {
+            propiedades.getProperty("Almacen"),
+            propiedades.getProperty("Casilleros"),
+            propiedades.getProperty("Vesturario"),
+            propiedades.getProperty("Curas"),
+            propiedades.getProperty("Patio"),
+            propiedades.getProperty("Aparcamiento")
+        };
+        DefaultComboBoxModel modelo = new DefaultComboBoxModel(sitios);
+        cmbSitio.setModel(modelo);
+        
+        String[] cachorros = {
+            propiedades.getProperty("Macho"),
+            propiedades.getProperty("Hembra"),
+            propiedades.getProperty("Cachorro"),
+            propiedades.getProperty("Anciano")
+        };
+        DefaultComboBoxModel modelo1 = new DefaultComboBoxModel(cachorros);
+        cmbPerros.setModel(modelo1);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
