@@ -33,6 +33,7 @@ public class PanelPerrosLista extends PanelP {
             propiedad.getProperty("Nombre"),
             propiedad.getProperty("Edad"),
             propiedad.getProperty("Raza"),
+            propiedad.getProperty("Ver"),
             propiedad.getProperty("Editar"),
             propiedad.getProperty("Eliminar")
         };
@@ -42,6 +43,7 @@ public class PanelPerrosLista extends PanelP {
             java.lang.String.class,
             java.lang.String.class,
             java.lang.String.class,
+            JButton.class,
             JButton.class,
             JButton.class
         };
@@ -53,7 +55,8 @@ public class PanelPerrosLista extends PanelP {
         for (int i = 0; i < perros.size(); i++) {
             datos[i] = new Object[]{perros.get(i).getId(),
                 perros.get(i).getNombre(),perros.get(i).getEdad(),
-                perros.get(i).getRaza(), new JButton(propiedad.getProperty("Editar")),
+                perros.get(i).getRaza(), new JButton(propiedad.getProperty("Ver")),
+                new JButton(propiedad.getProperty("Editar")),
                 new JButton(propiedad.getProperty("Eliminar"))};
         }
 
@@ -95,8 +98,15 @@ public class PanelPerrosLista extends PanelP {
                         }
                     }
                     
-                    
                     if(columna == 4)
+                    {
+                        PanelPerroVer pnlver = new PanelPerroVer(perros.get(fila).getId());
+                        FormInicio.pnlPrincipal.add(pnlver,"menu2");
+                        CardLayout paletas = (CardLayout)(pnlver.getLayout());
+                        FormInicio.pnlPrincipal.remove(FormInicio.pnlActual);
+                        FormInicio.pnlActual = pnlver;
+                    }
+                    if(columna == 5)
                     {
                         PanelPerroEditar pnleditar = new PanelPerroEditar(perros.get(fila).getId());
                         FormInicio.pnlPrincipal.add(pnleditar,"menu2");
@@ -104,7 +114,7 @@ public class PanelPerrosLista extends PanelP {
                         FormInicio.pnlPrincipal.remove(FormInicio.pnlActual);
                         FormInicio.pnlActual = pnleditar;
                     }
-                    if(columna == 5)
+                    if(columna == 6)
                     {
                         int respuesta = JOptionPane.showConfirmDialog(null,"¿Esta seguro de que desea borralo?", "Borrar perro", JOptionPane.YES_NO_OPTION);
                         if (respuesta == JOptionPane.YES_OPTION) {

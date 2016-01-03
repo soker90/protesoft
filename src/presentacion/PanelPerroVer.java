@@ -14,10 +14,10 @@ import java.nio.channels.FileChannel;
 import java.util.Properties;
 import javax.swing.DefaultComboBoxModel;
 
-public class PanelPerroEditar extends PanelP {
+public class PanelPerroVer extends PanelP {
 
     private int id;
-    public PanelPerroEditar(int id) {
+    public PanelPerroVer(int id) {
         initComponents();
         this.id = id;
         Perro p = GestorPerros.SeleccionarPerro(id);
@@ -70,21 +70,30 @@ public class PanelPerroEditar extends PanelP {
        lblEnfermedades.setText(propiedad.getProperty("Enfermedades"));
        lblDescripcion.setText(propiedad.getProperty("Descripcion"));
        lblVideo.setText(propiedad.getProperty("Video"));
-       btnImagen.setText(propiedad.getProperty("AnadirImagen"));
-       btnAceptar.setText(propiedad.getProperty("Aceptar"));
        lblEstado.setText(propiedad.getProperty("Estado"));
        
        Properties propiedades = FormInicio.propiedades;
        String[] estados = {
-            propiedades.getProperty("EnProtectora"),
-            propiedades.getProperty("EnCasaAcogida"),
-            propiedades.getProperty("EnCuarentena"),
-            propiedades.getProperty("Adoptado"),
-            propiedades.getProperty("Fallecido")
+            
         };
-        DefaultComboBoxModel modelo = new DefaultComboBoxModel(estados);
-        cmbEstado.setModel(modelo);
-        cmbEstado.setSelectedIndex(p.getEstado());
+        switch(p.getEstado())
+        {
+            case 0:
+                txtEstado.setText(propiedades.getProperty("EnProtectora"));
+                break;
+            case 1:
+                txtEstado.setText(propiedades.getProperty("EnCasaAcogida"));
+                break;
+            case 2:
+                txtEstado.setText(propiedades.getProperty("EnCuarentena"));
+                break;
+            case 3:
+                txtEstado.setText(propiedades.getProperty("Adoptado"));
+                break;
+            case 4:
+                txtEstado.setText(propiedades.getProperty("Fallecido"));
+                break;
+        }
         setFont(FormInicio.fuente);
         
     }
@@ -133,150 +142,104 @@ public class PanelPerroEditar extends PanelP {
         txtDescripcion = new javax.swing.JTextArea();
         lblVideo = new javax.swing.JLabel();
         txtVideo = new javax.swing.JTextField();
-        btnAceptar = new javax.swing.JButton();
-        btnImagen = new javax.swing.JButton();
         pnlImagenesP = new javax.swing.JScrollPane();
         pnlImagenes = new javax.swing.JPanel();
         lblEstado = new javax.swing.JLabel();
-        cmbEstado = new javax.swing.JComboBox<>();
+        txtEstado = new javax.swing.JTextField();
 
         setLayout(new java.awt.CardLayout());
 
         lblNombre.setText("Nombre");
 
+        txtNombre.setEditable(false);
+
         lblSexo.setText("Sexo");
 
         rbSexoM.setText("Macho");
-        rbSexoM.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbSexoMActionPerformed(evt);
-            }
-        });
+        rbSexoM.setEnabled(false);
+        rbSexoM.setFocusable(false);
 
         rbSexoH.setText("Hembra");
-        rbSexoH.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbSexoHActionPerformed(evt);
-            }
-        });
+        rbSexoH.setEnabled(false);
+        rbSexoH.setFocusable(false);
 
         lblRaza.setText("Raza");
 
+        txtRaza.setEditable(false);
+
         lblTamano.setText("Tamaño");
+
+        txtTamanyo.setEditable(false);
 
         lblEdad.setText("Edad");
 
+        txtEdad.setEditable(false);
+
         lblFecha.setText("Fecha entrada");
+
+        txtFecha.setEditable(false);
 
         lblChip.setText("Tiene chip");
 
+        txtChip.setEditable(false);
+
         rbChipS.setText("Si");
-        rbChipS.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbChipSActionPerformed(evt);
-            }
-        });
+        rbChipS.setEnabled(false);
 
         rbChipN.setText("No");
-        rbChipN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbChipNActionPerformed(evt);
-            }
-        });
+        rbChipN.setEnabled(false);
 
         jLabel8.setText("Nº");
 
         lblCachorro.setText("Cachorro");
 
         rbCachorroS.setText("Si");
-        rbCachorroS.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbCachorroSActionPerformed(evt);
-            }
-        });
+        rbCachorroS.setEnabled(false);
 
         rbCachorroN.setText("No");
-        rbCachorroN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbCachorroNActionPerformed(evt);
-            }
-        });
+        rbCachorroN.setEnabled(false);
 
         rbPppN.setText("No");
-        rbPppN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbPppNActionPerformed(evt);
-            }
-        });
+        rbPppN.setEnabled(false);
 
         rbPppS.setText("Si");
-        rbPppS.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbPppSActionPerformed(evt);
-            }
-        });
+        rbPppS.setEnabled(false);
 
         jLabel10.setText("PPP");
 
         lblVacunado.setText("Vacunado");
 
         rbVacunadoS.setText("Si");
-        rbVacunadoS.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbVacunadoSActionPerformed(evt);
-            }
-        });
+        rbVacunadoS.setEnabled(false);
 
         rbVacunadoN.setText("No");
-        rbVacunadoN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbVacunadoNActionPerformed(evt);
-            }
-        });
+        rbVacunadoN.setEnabled(false);
 
         lblEsterilizado.setText("Esterilizado");
 
         rbEsterilizadoS.setText("Si");
-        rbEsterilizadoS.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbEsterilizadoSActionPerformed(evt);
-            }
-        });
+        rbEsterilizadoS.setEnabled(false);
 
         rbEsterilizadoN.setText("No");
-        rbEsterilizadoN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbEsterilizadoNActionPerformed(evt);
-            }
-        });
+        rbEsterilizadoN.setEnabled(false);
 
         lblEnfermedades.setText("Enfermedades y tratamientos");
 
+        txtEnfermedades.setEditable(false);
         txtEnfermedades.setColumns(20);
         txtEnfermedades.setRows(5);
         jScrollPane1.setViewportView(txtEnfermedades);
 
         lblDescripcion.setText("Descripción");
 
+        txtDescripcion.setEditable(false);
         txtDescripcion.setColumns(20);
         txtDescripcion.setRows(5);
         jScrollPane2.setViewportView(txtDescripcion);
 
         lblVideo.setText("Video");
 
-        btnAceptar.setText("Aceptar");
-        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAceptarActionPerformed(evt);
-            }
-        });
-
-        btnImagen.setText("Añadir Imagen");
-        btnImagen.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnImagenActionPerformed(evt);
-            }
-        });
+        txtVideo.setEditable(false);
 
         pnlImagenesP.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         pnlImagenesP.setOpaque(false);
@@ -296,7 +259,7 @@ public class PanelPerroEditar extends PanelP {
 
         lblEstado.setText("Estado");
 
-        cmbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "En protectora", "En casa de acogida", "En cuarentena", "Adoptado", "Fallecido" }));
+        txtEstado.setEditable(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -358,10 +321,7 @@ public class PanelPerroEditar extends PanelP {
                                                             .addComponent(rbVacunadoN)
                                                             .addComponent(rbPppN)
                                                             .addComponent(rbEsterilizadoN))
-                                                        .addGap(0, 0, Short.MAX_VALUE))))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                                .addGap(0, 0, Short.MAX_VALUE)
-                                                .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                                        .addGap(0, 0, Short.MAX_VALUE))))))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jScrollPane1)
@@ -372,18 +332,15 @@ public class PanelPerroEditar extends PanelP {
                                                     .addComponent(lblDescripcion))
                                                 .addGap(0, 0, Short.MAX_VALUE))
                                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(lblVideo)
-                                                .addGap(63, 63, 63)
                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(cmbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(txtVideo))))
+                                                    .addComponent(lblVideo)
+                                                    .addComponent(lblEstado))
+                                                .addGap(55, 55, 55)
+                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(txtVideo)
+                                                    .addComponent(txtEstado))))
                                         .addGap(5, 5, 5))
-                                    .addComponent(pnlImagenesP)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lblEstado)
-                                            .addComponent(btnImagen))
-                                        .addGap(0, 0, Short.MAX_VALUE)))))
+                                    .addComponent(pnlImagenesP))))
                         .addGap(39, 39, 39))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(3, 3, 3)
@@ -464,123 +421,16 @@ public class PanelPerroEditar extends PanelP {
                 .addGap(5, 5, 5)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblEstado)
-                    .addComponent(cmbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnImagen)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38)
                 .addComponent(pnlImagenesP)
-                .addGap(18, 18, 18)
-                .addComponent(btnAceptar)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(88, Short.MAX_VALUE))
         );
 
         jScrollPane3.setViewportView(jPanel1);
 
         add(jScrollPane3, "card3");
     }// </editor-fold>//GEN-END:initComponents
-
-    private void rbSexoMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbSexoMActionPerformed
-        rbSexoM.setSelected(true);
-        rbSexoH.setSelected(false);
-    }//GEN-LAST:event_rbSexoMActionPerformed
-
-    private void rbSexoHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbSexoHActionPerformed
-        rbSexoM.setSelected(false);
-        rbSexoH.setSelected(true);
-    }//GEN-LAST:event_rbSexoHActionPerformed
-
-    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        
-        boolean e = GestorPerros.ModificarPerro(this.id, txtNombre.getText(), 
-                rbSexoM.isSelected(),txtRaza.getText(), txtTamanyo.getText(),
-                txtEdad.getText(), txtFecha.getText(), rbChipS.isSelected(),
-                txtChip.getText(), rbCachorroS.isSelected(), rbPppS.isSelected(),
-                rbVacunadoS.isSelected(), rbEsterilizadoS.isSelected(),
-                txtEnfermedades.getText(), txtDescripcion.getText(), 
-                txtVideo.getText(),cmbEstado.getSelectedIndex());
-        
-        PanelPerrosLista pnlperro = new PanelPerrosLista();
-        FormInicio.pnlPrincipal.add(pnlperro,"menu2");
-        CardLayout paletas = (CardLayout)(pnlperro.getLayout());
-        FormInicio.pnlPrincipal.remove(FormInicio.pnlActual);
-        FormInicio.pnlActual = pnlperro;
-    }//GEN-LAST:event_btnAceptarActionPerformed
-
-    private void rbChipSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbChipSActionPerformed
-        rbChipS.setSelected(true);
-        rbChipN.setSelected(false);
-    }//GEN-LAST:event_rbChipSActionPerformed
-
-    private void rbChipNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbChipNActionPerformed
-        rbChipS.setSelected(false);
-        rbChipN.setSelected(true);
-    }//GEN-LAST:event_rbChipNActionPerformed
-
-    private void rbCachorroSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbCachorroSActionPerformed
-        rbCachorroS.setSelected(true);
-        rbCachorroN.setSelected(false);
-    }//GEN-LAST:event_rbCachorroSActionPerformed
-
-    private void rbCachorroNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbCachorroNActionPerformed
-        rbCachorroS.setSelected(false);
-        rbCachorroN.setSelected(true);
-    }//GEN-LAST:event_rbCachorroNActionPerformed
-
-    private void rbVacunadoSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbVacunadoSActionPerformed
-        rbVacunadoS.setSelected(true);
-        rbVacunadoN.setSelected(false);
-    }//GEN-LAST:event_rbVacunadoSActionPerformed
-
-    private void rbVacunadoNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbVacunadoNActionPerformed
-        rbVacunadoS.setSelected(false);
-        rbVacunadoN.setSelected(true);
-    }//GEN-LAST:event_rbVacunadoNActionPerformed
-
-    private void rbPppSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbPppSActionPerformed
-        rbPppS.setSelected(true);
-        rbPppN.setSelected(false);
-    }//GEN-LAST:event_rbPppSActionPerformed
-
-    private void rbPppNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbPppNActionPerformed
-        rbPppS.setSelected(false);
-        rbPppN.setSelected(true);
-    }//GEN-LAST:event_rbPppNActionPerformed
-
-    private void rbEsterilizadoSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbEsterilizadoSActionPerformed
-        rbEsterilizadoN.setSelected(false);
-        rbEsterilizadoS.setSelected(true);
-    }//GEN-LAST:event_rbEsterilizadoSActionPerformed
-
-    private void rbEsterilizadoNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbEsterilizadoNActionPerformed
-        rbEsterilizadoN.setSelected(true);
-        rbEsterilizadoS.setSelected(false);
-    }//GEN-LAST:event_rbEsterilizadoNActionPerformed
-
-    private void btnImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImagenActionPerformed
-
-        JFileChooser fc = new JFileChooser();
-        File destino = new File("Perros"+File.separatorChar+this.id);
-        int respuesta = fc.showOpenDialog(this);
-        if (respuesta == JFileChooser.APPROVE_OPTION)
-        {
-            File nombre = new File("Perros"+File.separatorChar+this.id+
-                    File.separatorChar+fc.getSelectedFile().getName());
-            File origen=fc.getSelectedFile();
-            
-            try{
-              FileChannel in = (new FileInputStream(origen)).getChannel();
-              FileChannel out = (new FileOutputStream(nombre)).getChannel();
-              in.transferTo(0, origen.length(), out);
-              in.close();
-              out.close();
-            }
-            catch(Exception e)
-            {
-                System.out.println(e);
-            }
-        }
-        cargarImagenes();
-    }//GEN-LAST:event_btnImagenActionPerformed
 
     private void cargarImagenes()
     {
@@ -635,14 +485,10 @@ public class PanelPerroEditar extends PanelP {
         rbSexoM.setFont(new Font(nombre, estilo, numero));
         rbVacunadoN.setFont(new Font(nombre, estilo, numero));
         rbVacunadoS.setFont(new Font(nombre, estilo, numero));
-        cmbEstado.setFont(new Font(nombre, estilo, numero));
         
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAceptar;
-    private javax.swing.JButton btnImagen;
-    private javax.swing.JComboBox<String> cmbEstado;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
@@ -681,6 +527,7 @@ public class PanelPerroEditar extends PanelP {
     private javax.swing.JTextArea txtDescripcion;
     private javax.swing.JTextField txtEdad;
     private javax.swing.JTextArea txtEnfermedades;
+    private javax.swing.JTextField txtEstado;
     private javax.swing.JTextField txtFecha;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtRaza;

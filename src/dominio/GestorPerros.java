@@ -43,7 +43,8 @@ public class GestorPerros {
             boolean sexo, String raza, String tamanyo, String edad, 
             String fecha, boolean chip, String numero_chip, boolean cachorro,
             boolean ppp, boolean vacunado, boolean esterilizado, 
-            String enfermedades, String descripcion,String video) {
+            String enfermedades, String descripcion,String video,
+            int estado) {
         boolean resultado=false;
         try {
                 int rs = Agente.getAgente().insert("UPDATE protesoft_perros  SET "
@@ -53,7 +54,7 @@ public class GestorPerros {
                         +"', cachorro=" +(cachorro ? 1 : 0)+",ppp="+(ppp ? 1 : 0)+","+" vacunado="
                         +(vacunado ? 1 : 0)+", esterilizado="+(esterilizado ? 1 : 0)+
                         ", enfermedades='"+ enfermedades+"', descripcion='"
-                        +descripcion +"', video='"+video+"' WHERE id="+id);
+                        +descripcion +"', video='"+video+"', estado="+estado+" WHERE id="+id);
 
                 if(rs!=0){
                         resultado=true;
@@ -86,7 +87,7 @@ public class GestorPerros {
                         res.getString(6), res.getString(7), Boolean.parseBoolean(res.getString(8)),
                         res.getString(9), Boolean.parseBoolean(res.getString(10)), Boolean.parseBoolean(res.getString(11)),
                         Boolean.parseBoolean(res.getString(12)), Boolean.parseBoolean(res.getString(13)), res.getString(14),
-                        res.getString(15), res.getString(16)));   
+                        res.getString(15), res.getString(16), Integer.parseInt(res.getString(17))));   
                 File imagenes = new File("Perros"+File.separatorChar+res.getString(1));
                 if (!imagenes.exists()) {
                     try{
@@ -114,19 +115,12 @@ public class GestorPerros {
                         res.getString(6), res.getString(7), Boolean.parseBoolean(res.getString(8)),
                         res.getString(9), Boolean.parseBoolean(res.getString(10)), Boolean.parseBoolean(res.getString(11)),
                         Boolean.parseBoolean(res.getString(12)), Boolean.parseBoolean(res.getString(13)), res.getString(14),
-                        res.getString(15), res.getString(16));
+                        res.getString(15), res.getString(16), Integer.parseInt(res.getString(17)));
 
         } catch (Exception e) {
             System.out.println(e);
      }
 
         return p;
-    }
-
-    public static boolean ModificarPerro() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    
-    
+    }    
 }

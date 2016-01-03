@@ -19,6 +19,7 @@ public class Perro {
     private String enfermedades;
     private String descripcion;
     private String video;
+    private int estado;
 
     public Perro() {
     }
@@ -27,7 +28,7 @@ public class Perro {
             String tamanyo, String edad, String fecha, boolean chip, 
             String numero_chip, boolean cachorro, boolean ppp, boolean vacunado,
             boolean esterilizado, String enfermedades, String descripcion,
-            String video) {
+            String video, int estado) {
         this.id = id;
         this.nombre = nombre;
         this.sexo = sexo;
@@ -44,6 +45,7 @@ public class Perro {
         this.enfermedades = enfermedades;
         this.descripcion = descripcion;
         this.video = video;
+        this.estado = estado;
     }
 
     public int getId() {
@@ -109,8 +111,12 @@ public class Perro {
     public String getVideo() {
         return video;
     }
-    
-    
-    
-    
+
+    public int getEstado() {
+        return estado;
+    }
+
+    public void setEstado(int estado) {
+        this.estado = estado;
+    }
 }

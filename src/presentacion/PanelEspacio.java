@@ -92,52 +92,51 @@ public class PanelEspacio extends PanelP {
         x= e.getX();
         y= e.getY();
         if(imagen != null)
+        {
+            switch(modo)
             {
-                switch(modo)
-                {
-                    case ALMACEN:
-                        miAreaDibujo.addObjetoGrafico(new ImagenGrafico(x,y,imagAlmacen));
-                        miAreaDibujo.repaint();
-                        break;
-                    case APARCAMIENTO:
-                        miAreaDibujo.addObjetoGrafico(new ImagenGrafico(x,y,imagAparcamiento));
-                        miAreaDibujo.repaint();
-                        break;
-                    case CASILLEROS:
-                        miAreaDibujo.addObjetoGrafico(new ImagenGrafico(x,y,imagCasilleros));
-                        miAreaDibujo.repaint();
-                        break;
-                    case CURAS:
-                        miAreaDibujo.addObjetoGrafico(new ImagenGrafico(x,y,imagCuras));
-                        miAreaDibujo.repaint();
-                        break;
-                    case PATIO:
-                        miAreaDibujo.addObjetoGrafico(new ImagenGrafico(x,y,imagPatio));
-                        miAreaDibujo.repaint();
-                        break;
-                    case VESTUARIO:
-                        miAreaDibujo.addObjetoGrafico(new ImagenGrafico(x,y,imagVestuario));
-                        miAreaDibujo.repaint();
-                        break;
-                    case MACHO:
-                        miAreaDibujo.addObjetoGrafico(new ImagenGrafico(x,y,imagMacho));
-                        miAreaDibujo.repaint();
-                        break;
-                    case HEMBRA:
-                        miAreaDibujo.addObjetoGrafico(new ImagenGrafico(x,y,imagHembra));
-                        miAreaDibujo.repaint();
-                        break;
-                    case CACHORRO:
-                        miAreaDibujo.addObjetoGrafico(new ImagenGrafico(x,y,imagCachorro));
-                        miAreaDibujo.repaint();
-                        break;
-                    case ANCIANO:
-                        miAreaDibujo.addObjetoGrafico(new ImagenGrafico(x,y,imagAnciano));
-                        miAreaDibujo.repaint();
-                        break;
-                        
-                }
+                case ALMACEN:
+                    miAreaDibujo.addObjetoGrafico(new ImagenGrafico(x,y,imagAlmacen));
+                    miAreaDibujo.repaint();
+                    break;
+                case APARCAMIENTO:
+                    miAreaDibujo.addObjetoGrafico(new ImagenGrafico(x,y,imagAparcamiento));
+                    miAreaDibujo.repaint();
+                    break;
+                case CASILLEROS:
+                    miAreaDibujo.addObjetoGrafico(new ImagenGrafico(x,y,imagCasilleros));
+                    miAreaDibujo.repaint();
+                    break;
+                case CURAS:
+                    miAreaDibujo.addObjetoGrafico(new ImagenGrafico(x,y,imagCuras));
+                    miAreaDibujo.repaint();
+                    break;
+                case PATIO:
+                    miAreaDibujo.addObjetoGrafico(new ImagenGrafico(x,y,imagPatio));
+                    miAreaDibujo.repaint();
+                    break;
+                case VESTUARIO:
+                    miAreaDibujo.addObjetoGrafico(new ImagenGrafico(x,y,imagVestuario));
+                    miAreaDibujo.repaint();
+                    break;
+                case MACHO:
+                    miAreaDibujo.addObjetoGrafico(new ImagenGrafico(x,y,imagMacho));
+                    miAreaDibujo.repaint();
+                    break;
+                case HEMBRA:
+                    miAreaDibujo.addObjetoGrafico(new ImagenGrafico(x,y,imagHembra));
+                    miAreaDibujo.repaint();
+                    break;
+                case CACHORRO:
+                    miAreaDibujo.addObjetoGrafico(new ImagenGrafico(x,y,imagCachorro));
+                    miAreaDibujo.repaint();
+                    break;
+                case ANCIANO:
+                    miAreaDibujo.addObjetoGrafico(new ImagenGrafico(x,y,imagAnciano));
+                    miAreaDibujo.repaint();
+                    break;
             }
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -178,6 +177,8 @@ public class PanelEspacio extends PanelP {
                 btnImagenActionPerformed(evt);
             }
         });
+
+        scrollPane.setToolTipText("Haga click para añadir el icono");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

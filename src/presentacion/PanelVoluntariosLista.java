@@ -48,6 +48,7 @@ public class PanelVoluntariosLista extends PanelP {
             "DNI",
             propiedad.getProperty("Nombre"),
             propiedad.getProperty("Apellidos"),
+            propiedad.getProperty("Ver"),
             propiedad.getProperty("Editar"),
             propiedad.getProperty("Eliminar") 
  
@@ -59,6 +60,7 @@ public class PanelVoluntariosLista extends PanelP {
             java.lang.String.class,
             java.lang.String.class,
             JButton.class,
+            JButton.class,
             JButton.class
         };
         
@@ -69,7 +71,8 @@ public class PanelVoluntariosLista extends PanelP {
         for (int i = 0; i < voluntarios.size(); i++) {
             datos[i] = new Object[]{voluntarios.get(i).getId(),
                 voluntarios.get(i).getDni(),voluntarios.get(i).getNombre(),
-                voluntarios.get(i).getApellidos(), new JButton(propiedad.getProperty("Editar")),
+                voluntarios.get(i).getApellidos(), new JButton(propiedad.getProperty("Ver")),
+                new JButton(propiedad.getProperty("Editar")),
                 new JButton(propiedad.getProperty("Eliminar"))};
         }
         
@@ -114,8 +117,15 @@ public class PanelVoluntariosLista extends PanelP {
                         }
                     }
                     
-                    
                     if(columna == 4)
+                    {
+                        PanelVoluntariosVer pnlver = new PanelVoluntariosVer(voluntarios.get(fila).getId());
+                        FormInicio.pnlPrincipal.add(pnlver,"menu2");
+                        CardLayout paletas = (CardLayout)(pnlver.getLayout());
+                        FormInicio.pnlPrincipal.remove(FormInicio.pnlActual);
+                        FormInicio.pnlActual = pnlver;
+                    }
+                    if(columna == 5)
                     {
                         PanelVoluntariosEditar pnleditar = new PanelVoluntariosEditar(voluntarios.get(fila).getId());
                         FormInicio.pnlPrincipal.add(pnleditar,"menu2");
@@ -123,7 +133,7 @@ public class PanelVoluntariosLista extends PanelP {
                         FormInicio.pnlPrincipal.remove(FormInicio.pnlActual);
                         FormInicio.pnlActual = pnleditar;
                     }
-                    if(columna == 5)
+                    if(columna == 6)
                     {
                         int respuesta = JOptionPane.showConfirmDialog(null,"¿Esta seguro de que desea borralo?", "Borrar voluntario", JOptionPane.YES_NO_OPTION);
                         if (respuesta == JOptionPane.YES_OPTION) {
