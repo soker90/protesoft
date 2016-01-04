@@ -3,12 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/edu/software/protesoft/src/propiedades/English.properties</file>
-            <file>file:/home/edu/software/protesoft/src/propiedades/Espanol.properties</file>
-            <file>file:/home/edu/software/protesoft/src/presentacion/PanelPerroVer.java</file>
-            <file>file:/home/edu/software/protesoft/src/presentacion/PanelPerroEditar.java</file>
-            <file>file:/home/edu/software/protesoft/src/presentacion/PanelPerrosLista.java</file>
-            <file>file:/home/edu/software/protesoft/src/presentacion/FormInicio.java</file>
+            <file>file:/home/edu/software/protesoft/build.xml</file>
         </group>
     </open-files>
 </project-private>
