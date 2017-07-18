@@ -6,3 +6,7 @@ Además, permite gestionar los espacios de la protectora
 ## Requisitos
 
 Es necesario tener instalado java 8
+
+## Motivación 
+
+Práctica para la asignatura de Interacción Persona-Ordenador
